@@ -3,7 +3,7 @@
 // cached — this doubles as the first-run "download everything for offline
 // use" pass and the "check for new/changed content" sync, since assets
 // already in the cache are skipped and only missing ones are fetched.
-const SHELL_CACHE = 'shabadvaani-shell-v8';
+const SHELL_CACHE = 'shabadvaani-shell-v9';
 const CONTENT_CACHE = 'shabadvaani-content-v2';
 
 const SHELL_ASSETS = [
@@ -30,6 +30,7 @@ const SHELL_ASSETS = [
   './fonts/NotoSansDevanagari.woff2',
   './fonts/siddhanta.ttf',
   './fonts/MaterialSymbolsOutlined.woff2',
+  './icons/favicon-32.png',
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/icon-maskable-192.png',

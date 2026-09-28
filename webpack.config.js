@@ -29,6 +29,7 @@ const PROD_SHELL_ASSETS = [
   './fonts/NotoSansDevanagari.woff2',
   './fonts/siddhanta.ttf',
   './fonts/MaterialSymbolsOutlined.woff2',
+  './icons/favicon-32.png',
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/icon-maskable-192.png',
