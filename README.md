@@ -195,8 +195,11 @@ git pull
 npm run deploy
 ```
 
-`npm run deploy` runs `npm run build` and then pushes the contents of `dist/`
-to the `gh-pages` branch. GitHub Pages usually updates within 1–2 minutes. You
+`npm run deploy` runs `npm run build` and then pushes the **contents** of
+`dist/` to the top level of the `gh-pages` branch, with a `.nojekyll` file so
+GitHub serves the files as-is. Don't push a `dist/` folder to `gh-pages` by
+hand: Pages can only publish from `/ (root)` or `/docs`, so it will never
+offer `dist` as a folder option. GitHub Pages usually updates within 1–2 minutes. You
 can follow progress under the repository's **Actions** tab
 ("pages build and deployment").
 

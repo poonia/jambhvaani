@@ -8,7 +8,7 @@
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development",
     "serve:dist": "cd dist && python3 ../scripts/dev-server.py 8124",
-    "deploy": "npm run build && gh-pages -d dist",
+    "deploy": "npm run build && gh-pages -d dist --nojekyll",
     "check:audio": "python3 scripts/check-audio.py"
   },
   "devDependencies": {
