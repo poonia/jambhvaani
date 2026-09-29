@@ -3,7 +3,7 @@
 // cached — this doubles as the first-run "download everything for offline
 // use" pass and the "check for new/changed content" sync, since assets
 // already in the cache are skipped and only missing ones are fetched.
-const SHELL_CACHE = 'shabadvaani-shell-v9';
+const SHELL_CACHE = 'shabadvaani-shell-v10';
 const CONTENT_CACHE = 'shabadvaani-content-v2';
 
 const SHELL_ASSETS = [
@@ -16,10 +16,12 @@ const SHELL_ASSETS = [
   './src/audio-player.js',
   './src/icons.js',
   './src/util.js',
+  './src/pwa-install.js',
   './src/views/home.js',
   './src/views/book.js',
   './src/views/shabad.js',
   './src/views/bookmarks.js',
+  './src/views/install.js',
   './src/styles.css',
   './fonts/NotoSerif-latin.woff2',
   './fonts/NotoSerif-latin-italic.woff2',

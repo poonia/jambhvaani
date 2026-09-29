@@ -28,6 +28,11 @@ export const icons = {
   fire: 'local_fire_department',
   playCircle: 'play_circle',
   radioUnchecked: 'radio_button_unchecked',
+  download: 'download',
+  installDesktop: 'install_desktop',
+  android: 'android',
+  iphone: 'phone_iphone',
+  computer: 'computer',
 };
 
 const FILLED = new Set(['bookmarkFilled']);

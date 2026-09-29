@@ -310,12 +310,14 @@ img { display: block; max-width: 100%; }
     font-weight: 500; font-size: 13px;
   }
   .desktop-links a {
+    display: inline-flex; align-items: center; gap: 6px;
     color: #574238;
     padding: 4px 12px;
     border-radius: 999px;
     cursor: pointer;
     transition: background 0.15s ease, color 0.15s ease;
   }
+  .desktop-links a .material-symbols-outlined { font-size: 18px; }
   .desktop-links a:hover:not(.active) { color: #c55b08; background: #f4ece8; }
   .desktop-links a.active {
     background: #c55b08;
@@ -324,6 +326,16 @@ img { display: block; max-width: 100%; }
     box-shadow: 0 1px 2px rgba(46, 30, 20, 0.08);
   }
   .desktop-nav .header-actions { gap: 6px; }
+  .nav-download {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 12px; border-radius: 999px;
+    border: 1px solid #dec1b2; color: #c55b08;
+    font-family: var(--font-label); font-weight: 600; font-size: 13px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .nav-download .material-symbols-outlined { font-size: 18px; }
+  .nav-download:hover:not(.active) { background: #f4ece8; }
+  .nav-download.active { background: #c55b08; border-color: #c55b08; color: #fff; }
 }
 
 #app-main {
@@ -335,7 +347,7 @@ img { display: block; max-width: 100%; }
 }
 @media (min-width: 1000px) {
   /* Bottom spacing (incl. room for the docked player) lives on #app-footer. */
-  #app-main { padding: 0 20px; }
+  #app-main { padding: 0 4px; }
 }
 
 /* ---------- Site footer (tablet + desktop only) ---------- */
@@ -1302,7 +1314,7 @@ a.cat-card:hover .cat-card-foot .material-symbols-outlined { transform: translat
 
 .shabad-text {
   margin: 0 auto;
-  font-size: calc(16px * var(--text-scale));
+  font-size: calc(18px * var(--text-scale));
   line-height: 1.9;
   white-space: pre-line;
   color: var(--color-neutral-800);
@@ -1322,7 +1334,7 @@ a.cat-card:hover .cat-card-foot .material-symbols-outlined { transform: translat
 
 .shabad-count {
   text-align: center;
-  margin: 16px 0 60px;
+  margin: 16px 0 40px;
   font-family: var(--font-heading);
   font-size: 11.5px;
   color: var(--color-neutral-500);
@@ -1331,7 +1343,7 @@ a.cat-card:hover .cat-card-foot .material-symbols-outlined { transform: translat
 @media (min-width: 700px) {
   .shabad-content { margin-top: 20px; }
   .shabad-verse { font-size: calc(23px * var(--text-scale)); max-width: 600px; }
-  .shabad-text { font-size: calc(17px * var(--text-scale)); max-width: 600px; }
+  .shabad-text { font-size: calc(20px * var(--text-scale)); max-width: 600px; margin-top: 20px; }
   .shabad-nav { max-width: 600px; }
 }
 @media (min-width: 1000px) {
@@ -1580,3 +1592,206 @@ a.cat-card:hover .cat-card-foot .material-symbols-outlined { transform: translat
 .aarti-page :not(.material-symbols-outlined) {
   font-family: var(--font-scripture);
 }
+
+/* ---------- Install guide page (#/install) ---------- */
+.install-page { --ip-primary: #c55b08; --ip-soft: #ffdbc9; --ip-line: #dec1b2; padding: 20px 0 8px; }
+.install-hero { text-align: center; padding: 8px 4px 20px; }
+.install-hero-icon { width: 72px; height: 72px; border-radius: 18px; margin: 0 auto 12px; box-shadow: 0 6px 18px rgba(46, 30, 20, 0.15); }
+.install-hero-title { font-family: var(--font-heading); font-size: 21px; line-height: 1.35; margin: 0 0 8px; color: var(--color-text); }
+.install-hero-sub { font-size: 14px; line-height: 1.7; color: var(--color-neutral-700); margin: 0 auto; max-width: 520px; }
+.install-now {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 16px;
+  padding: 10px 22px; border-radius: 999px; background: var(--ip-primary); color: #fff;
+  font-family: var(--font-label); font-weight: 700; font-size: 14px;
+  box-shadow: 0 4px 14px rgba(197, 91, 8, 0.3);
+}
+.install-now[hidden] { display: none; }
+.install-done {
+  display: inline-flex; align-items: center; gap: 6px; margin: 16px 0 0;
+  padding: 8px 14px; border-radius: 12px; background: #d7edd9; color: #2e5b44; font-size: 13px;
+}
+
+.install-tabs {
+  display: flex; gap: 4px; padding: 4px; margin: 0 auto 8px; max-width: 480px;
+  background: #f4ece8; border: 1px solid var(--ip-line); border-radius: 999px;
+  font-family: var(--font-label);
+}
+.install-tab {
+  flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 8px 6px; border-radius: 999px; font-size: 12.5px; font-weight: 600; color: #574238; white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.install-tab .material-symbols-outlined { font-size: 18px; }
+.install-tab.active { background: var(--ip-primary); color: #fff; box-shadow: 0 1px 3px rgba(46, 30, 20, 0.15); }
+
+.install-steps { list-style: none; margin: 0; padding: 0; }
+.install-step {
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+  padding: 24px 0; border-bottom: 1px solid var(--color-divider);
+}
+.install-step:last-child { border-bottom: none; }
+.install-step-copy { text-align: center; max-width: 420px; }
+.install-step-num {
+  display: inline-block; padding: 3px 10px; border-radius: 999px; background: var(--ip-soft); color: #7a3300;
+  font-family: var(--font-label); font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+}
+.install-step-title { font-family: var(--font-heading); font-size: 17px; margin: 8px 0 6px; color: var(--color-text); }
+.install-step-text { font-size: 14px; line-height: 1.75; color: var(--color-neutral-700); margin: 0; }
+.install-step-text .material-symbols-outlined { font-size: 16px; vertical-align: -3px; color: var(--ip-primary); }
+.install-footnote {
+  font-size: 12.5px; line-height: 1.7; color: var(--color-neutral-600); text-align: center;
+  background: #f8f4f4; border-radius: 12px; padding: 12px 14px; margin: 8px 0 0;
+}
+@media (min-width: 700px) {
+  .install-step { flex-direction: row; gap: 40px; justify-content: center; }
+  .install-step:nth-child(even) { flex-direction: row-reverse; }
+  .install-step-copy { text-align: left; flex: 1; }
+  .install-step-shot { flex-shrink: 0; }
+}
+
+/* Illustrated snapshots: fixed-size mock screens (phone / desktop window). */
+.install-step-shot { font-family: system-ui, 'Noto Sans Devanagari', sans-serif; }
+.install-step-shot .material-symbols-outlined { font-size: 16px; line-height: 1; }
+.snap-phone {
+  position: relative; width: 210px; height: 420px; padding: 8px;
+  border-radius: 34px; background: #2d2b2b;
+  box-shadow: 0 14px 32px rgba(46, 30, 20, 0.22), inset 0 0 0 2px #4a4545;
+}
+.snap-notch { position: absolute; top: 14px; left: 50%; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: #111; z-index: 3; }
+.snap-phone.is-ios .snap-notch { width: 62px; height: 18px; margin-left: -31px; top: 12px; border-radius: 12px; }
+.snap-screen {
+  position: relative; width: 100%; height: 100%; overflow: hidden;
+  border-radius: 27px; background: #fff; display: flex; flex-direction: column;
+}
+.snap-status { display: flex; justify-content: space-between; align-items: center; padding: 6px 16px 4px; font-size: 10px; font-weight: 600; color: #222; }
+.snap-status span { display: inline-flex; gap: 2px; }
+.snap-status .material-symbols-outlined { font-size: 12px; }
+.snap-dim { color: #8a8686; }
+.snap-lock { color: #6d6969; font-size: 12px !important; }
+
+.snap-chrome-bar { display: flex; align-items: center; gap: 6px; padding: 4px 8px 6px; border-bottom: 1px solid #eee; }
+.snap-url {
+  flex: 1; display: flex; align-items: center; gap: 4px; min-width: 0;
+  padding: 5px 8px; border-radius: 999px; background: #f1f0f0; font-size: 10px; color: #333;
+}
+.snap-url span:not(.material-symbols-outlined):not(.snap-tap) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.snap-tap { display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; padding: 3px; }
+
+.snap-page { flex: 1; padding: 10px 10px 0; background: var(--color-bg); overflow: hidden; }
+.snap-page-hero {
+  position: relative; height: 84px; border-radius: 12px; overflow: hidden;
+  background: linear-gradient(135deg, #ffe7d6, #fff8f5); display: flex; align-items: center; justify-content: center;
+}
+.snap-page-hero img { position: absolute; width: 70px; opacity: 0.12; }
+.snap-page-title { position: relative; font-family: var(--font-heading); font-weight: 700; font-size: 16px; color: #c55b08; }
+.snap-page-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+.snap-page-cards i { height: 52px; border-radius: 8px; background: #fff; border: 1px solid #efe2da; }
+.snap-page-cards i:nth-child(2), .snap-page-cards i:nth-child(3) { background: #f3f8f3; }
+.snap-page-line { height: 7px; border-radius: 4px; background: #ece4df; margin-top: 10px; }
+.snap-page-line.short { width: 60%; margin-top: 6px; }
+
+.snap-menu {
+  position: absolute; top: 30px; right: 6px; width: 132px; padding: 4px 0; z-index: 2;
+  background: #fff; border-radius: 10px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+}
+.snap-menu-row { display: flex; align-items: center; gap: 8px; padding: 7px 10px; font-size: 10.5px; color: #333; }
+.snap-menu-row .material-symbols-outlined { color: #555; }
+
+.snap-scrim { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.35); z-index: 1; }
+.snap-dialog {
+  position: absolute; left: 12px; right: 12px; top: 50%; transform: translateY(-50%); z-index: 2;
+  background: #fff; border-radius: 16px; padding: 14px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+.snap-dialog-title { margin: 0 0 10px; font-size: 13px; font-weight: 700; color: #222; }
+.snap-dialog-app { display: flex; align-items: center; gap: 8px; font-size: 11px; color: #222; }
+.snap-dialog-app img { width: 30px; height: 30px; border-radius: 8px; }
+.snap-dialog-app small, .snap-sheet-head small, .snap-ios-add-card small { display: block; color: #777; font-size: 9px; }
+.snap-dialog-actions { display: flex; justify-content: flex-end; align-items: center; gap: 12px; margin-top: 14px; font-size: 11px; font-weight: 600; color: #1a73e8; }
+.snap-btn { padding: 6px 12px; border-radius: 999px; background: #1a73e8; color: #fff; }
+
+.snap-safari-bar { background: #f7f7f7; border-top: 1px solid #e5e5e5; padding: 6px 8px 12px; }
+.snap-url.ios { justify-content: center; background: #e9e9eb; border-radius: 10px; }
+.snap-safari-tools { display: flex; justify-content: space-between; align-items: center; padding: 8px 6px 0; color: #0a84ff; }
+.snap-safari-tools .material-symbols-outlined { font-size: 18px; }
+.snap-safari-tools .snap-tap .material-symbols-outlined { color: #0a84ff; }
+
+.snap-sheet {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 10px 8px 14px;
+  background: #f2f2f7; border-radius: 16px 16px 0 0;
+}
+.snap-sheet-head { display: flex; align-items: center; gap: 8px; padding: 2px 4px 10px; font-size: 11px; color: #222; }
+.snap-sheet-head img { width: 30px; height: 30px; border-radius: 8px; }
+.snap-sheet-group { background: #fff; border-radius: 10px; margin-top: 8px; overflow: visible; }
+.snap-sheet-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 10px; font-size: 10.5px; color: #222; border-bottom: 1px solid #eee; }
+.snap-sheet-row:last-child { border-bottom: none; }
+
+.snap-ios-add { flex: 1; background: #f2f2f7; padding: 6px 8px; }
+.snap-ios-add-nav { display: flex; justify-content: space-between; align-items: center; font-size: 10px; color: #222; padding: 4px 0 12px; }
+.snap-link { color: #0a84ff; font-weight: 600; }
+.snap-ios-add-nav .snap-tap { border-radius: 8px; padding: 3px 6px; }
+.snap-ios-add-card { display: flex; gap: 10px; align-items: center; background: #fff; border-radius: 10px; padding: 10px; font-size: 11px; }
+.snap-ios-add-card img { width: 40px; height: 40px; border-radius: 10px; }
+.snap-ios-input { display: block; border-bottom: 1px solid #ddd; padding-bottom: 3px; margin-bottom: 3px; font-weight: 600; }
+.snap-ios-note { font-size: 9px; color: #6d6d72; line-height: 1.5; margin: 8px 4px 0; }
+
+.snap-home { flex: 1; background: linear-gradient(160deg, #f6c79f, #c55b08 60%, #6f3322); color: #fff; }
+.snap-home.is-ios { background: linear-gradient(160deg, #a9dcd2, #2e5b44 70%); }
+.snap-home .snap-status { color: #fff; }
+.snap-home-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px 8px; padding: 18px 12px; }
+.snap-app { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.snap-app-ic {
+  width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  background: rgba(255, 255, 255, 0.28);
+}
+.snap-app-ic .material-symbols-outlined { font-size: 18px; color: #fff; }
+.snap-app-ic.mine { background: #fff; overflow: visible; }
+.snap-app-ic.mine img { width: 100%; height: 100%; border-radius: 10px; }
+.snap-app-lbl { width: 26px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.5); }
+.snap-app-name { font-size: 8.5px; font-weight: 600; }
+
+.snap-desktop {
+  position: relative; width: 300px; height: 210px; border-radius: 10px; overflow: hidden;
+  background: #fff; display: flex; flex-direction: column;
+  box-shadow: 0 14px 32px rgba(46, 30, 20, 0.2), 0 0 0 1px #ddd;
+}
+.snap-desktop-tabs { display: flex; align-items: center; gap: 5px; padding: 6px 8px 0; background: #dee1e6; }
+.snap-desktop-tabs i { width: 8px; height: 8px; border-radius: 50%; background: #ff5f57; }
+.snap-desktop-tabs i:nth-child(2) { background: #febc2e; }
+.snap-desktop-tabs i:nth-child(3) { background: #28c840; }
+.snap-desktop-tab { margin-left: 8px; padding: 4px 14px; font-size: 9.5px; background: #fff; border-radius: 6px 6px 0 0; color: #333; }
+.snap-desktop-bar { display: flex; align-items: center; gap: 6px; padding: 5px 8px; border-bottom: 1px solid #eee; }
+.snap-url.wide { justify-content: flex-start; }
+.snap-url-install { margin-left: auto; color: #333; }
+.snap-desktop-body { position: relative; flex: 1; display: flex; overflow: hidden; }
+.snap-desktop-body .snap-page { padding: 8px 12px 0; }
+.snap-desktop-body .snap-page-hero { height: 64px; }
+.snap-desktop-body .snap-page-cards { grid-template-columns: repeat(4, 1fr); }
+.snap-desktop-body .snap-page-cards i { height: 40px; }
+.snap-dialog.desk { left: auto; right: 10px; top: 6px; transform: none; width: 170px; padding: 12px; }
+.snap-dialog.desk .snap-dialog-actions { justify-content: flex-start; }
+.snap-desktop-appbar { display: flex; align-items: center; gap: 6px; padding: 6px 8px; background: #c55b08; color: #fff; font-size: 10px; font-weight: 600; }
+.snap-desktop-appbar img { width: 14px; height: 14px; border-radius: 3px; }
+.snap-win-ctrls { margin-left: auto; display: inline-flex; gap: 6px; }
+.snap-win-ctrls .material-symbols-outlined { font-size: 12px !important; }
+.snap-dock {
+  position: absolute; left: 50%; bottom: 6px; transform: translateX(-50%); z-index: 2;
+  display: flex; align-items: center; gap: 8px; padding: 5px 10px; border-radius: 12px;
+  background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(6px); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+.snap-dock i { width: 22px; height: 22px; border-radius: 6px; background: #d7d3d3; }
+.snap-dock .snap-app-ic { width: 26px; height: 26px; border-radius: 7px; }
+.snap-dock .snap-app-ic.mine img { border-radius: 7px; }
+
+/* The control to tap in each snapshot: saffron ring with a soft pulse. */
+.install-step-shot .hl {
+  position: relative; z-index: 1;
+  box-shadow: 0 0 0 2px #c55b08, 0 0 0 5px rgba(197, 91, 8, 0.25);
+  animation: snap-pulse 1.6s ease-out infinite;
+}
+.snap-menu-row.hl, .snap-sheet-row.hl { background: #fff1e8; border-radius: 6px; font-weight: 700; color: #7a3300; }
+@keyframes snap-pulse {
+  0%   { box-shadow: 0 0 0 2px #c55b08, 0 0 0 2px rgba(197, 91, 8, 0.45); }
+  70%  { box-shadow: 0 0 0 2px #c55b08, 0 0 0 10px rgba(197, 91, 8, 0); }
+  100% { box-shadow: 0 0 0 2px #c55b08, 0 0 0 10px rgba(197, 91, 8, 0); }
+}
+@media (prefers-reduced-motion: reduce) { .install-step-shot .hl { animation: none; } }

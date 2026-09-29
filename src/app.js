@@ -2,8 +2,10 @@ import * as home from './views/home.js';
 import * as book from './views/book.js';
 import * as shabad from './views/shabad.js';
 import * as bookmarks from './views/bookmarks.js';
+import * as install from './views/install.js';
 import { getFontScale, setFontScale } from './state.js';
 import { icon } from './icons.js';
+import './pwa-install.js';
 
 const appMain = document.getElementById('app-main');
 const appHeader = document.getElementById('app-header');
@@ -64,6 +66,7 @@ function setHeader({ title, titleVariant = 'app', backHref, showBookmark, bookma
         <nav class="desktop-links dn">${desktopLinksHtml()}</nav>
         <div class="header-actions">
           ${showBookmark ? bookmarkButtonHtml(bookmarked) : ''}
+          ${desktopDownloadLinkHtml()}
           ${renderFontControl()}
         </div>
       </div>
@@ -82,10 +85,17 @@ function setHeader({ title, titleVariant = 'app', backHref, showBookmark, bookma
 
 function desktopLinksHtml() {
   const active = currentActiveTab();
-  const link = (key, label, href) => `<a data-tab="${key}" data-href="${href}" class="${active === key ? 'active' : ''}">${label}</a>`;
-  return link('home', 'होम', '#/home')
-    + link('shabadvani', 'शब्दवाणी', `#/book/${SHABADVANI_BOOK_ID}`)
-    + link('bookmarks', 'बुकमार्क', '#/bookmarks');
+  const link = (key, label, iconName, href) => `<a data-tab="${key}" data-href="${href}" class="${active === key ? 'active' : ''}">${icon(iconName)}<span>${label}</span></a>`;
+  return link('home', 'होम', 'home', '#/home')
+    + link('shabadvani', 'शब्दवाणी', 'book', `#/book/${SHABADVANI_BOOK_ID}`)
+    + link('bookmarks', 'बुकमार्क', 'bookmark', '#/bookmarks');
+}
+
+// Sits with the header actions (right side, beside the font control) rather
+// than among the page links.
+function desktopDownloadLinkHtml() {
+  const active = currentActiveTab() === 'install';
+  return `<a class="nav-download ${active ? 'active' : ''}" href="#/install">${icon('download')}<span>डाउनलोड</span></a>`;
 }
 
 function wireDesktopLinks(root) {
@@ -104,6 +114,7 @@ function currentActiveTab() {
   const { view, params } = parseHash();
   if (view === home) return 'home';
   if (view === bookmarks) return 'bookmarks';
+  if (view === install) return 'install';
   const bookId = view === book ? params.id : params.bookId;
   return bookId === SHABADVANI_BOOK_ID ? 'shabadvani' : null;
 }
@@ -116,7 +127,8 @@ function renderTabBar() {
     </button>`;
   tabBar.innerHTML = item('home', 'होम', 'home', '#/')
     + item('shabadvani', 'शब्दवाणी', 'book', `#/book/${SHABADVANI_BOOK_ID}`)
-    + item('bookmarks', 'बुकमार्क', 'bookmark', '#/bookmarks');
+    + item('bookmarks', 'बुकमार्क', 'bookmark', '#/bookmarks')
+    + item('install', 'डाउनलोड', 'download', '#/install');
   tabBar.querySelectorAll('.tab-item').forEach((btn) => {
     btn.addEventListener('click', () => { location.hash = btn.dataset.href; });
   });
@@ -136,6 +148,7 @@ function parseHash() {
   if (parts[0] === 'book' && parts[1]) return { view: book, params: { id: parts[1] } };
   if (parts[0] === 'shabad' && parts[1] && parts[2]) return { view: shabad, params: { bookId: parts[1], shabadId: parts[2] } };
   if (parts[0] === 'bookmarks') return { view: bookmarks, params: {} };
+  if (parts[0] === 'install') return { view: install, params: {} };
   return { view: home, params: {} };
 }
 
@@ -229,6 +242,7 @@ function renderFooter() {
     ['आरती व नित्य स्तुति', '#/book/arti'],
     ['शब्द संग्रह', '#/book/shabad-sangrah'],
     ['बुकमार्क', '#/bookmarks'],
+    ['ऐप डाउनलोड करें', '#/install'],
   ].map(([label, href]) => `<a href="${href}">${label}</a>`).join('<span class="footer-sep" aria-hidden="true">•</span>');
 
   appFooter.innerHTML = `

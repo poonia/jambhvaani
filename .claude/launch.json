@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "static",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["scripts/dev-server.py", "8123"],
+      "port": 8123
+    },
+    {
+      "name": "static-alt",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["scripts/dev-server.py", "8127"],
+      "port": 8127
+    }
+  ]
+}
